@@ -1,0 +1,34 @@
+{
+  "name": "toolgate-workspace",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.33.2",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "check-types": "turbo run check-types",
+    "test": "turbo run test",
+    "lint": "pnpm format:check && oxlint --deny-warnings apps packages",
+    "lint:fix": "oxlint --fix apps packages && pnpm format",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "check": "pnpm lint && pnpm check-types && pnpm test && pnpm build && pnpm validate",
+    "bench": "node --env-file-if-exists=.env packages/eval/dist/cli.js --dataset datasets/core.jsonl --config benchmark.config.json",
+    "validate": "pnpm bench validate && pnpm bench validate --dataset datasets/mail.jsonl",
+    "evaluate": "pnpm bench evaluate",
+    "demo": "node --env-file-if-exists=.env apps/demo/dist/index.js",
+    "demo:langgraph": "node apps/langgraph-demo/dist/index.js",
+    "demo:mail": "node --env-file-if-exists=.env apps/demo/dist/mail-demo.js",
+    "evaluate:mail": "pnpm bench evaluate --dataset datasets/mail.jsonl --split all"
+  },
+  "devDependencies": {
+    "turbo": "^2.10.12",
+    "oxlint": "^1.83.0",
+    "prettier": "3.9.7",
+    "@stylistic/eslint-plugin": "5.10.0",
+    "typescript": "catalog:",
+    "@types/node": "catalog:"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "@toolgate/demo",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "check-types": "tsc --noEmit",
+    "test": "node --test tests/*.test.ts"
+  },
+  "dependencies": {
+    "@toolgate/core": "workspace:*",
+    "@toolgate/ai-sdk": "workspace:*",
+    "ai": "^6.0.0",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@toolgate/config": "workspace:*",
+    "typescript": "catalog:",
+    "@types/node": "catalog:"
+  },
+  "private": true
+}

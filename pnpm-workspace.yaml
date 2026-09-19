@@ -1,0 +1,7 @@
+packages:
+  - apps/*
+  - packages/*
+catalog:
+  typescript: ^7.0.2
+  "@types/node": ^24.13.5
+  zod: ^4.6.5
